@@ -1,36 +1,84 @@
-def main(): 
-    file = open ("day1\input.txt", "r")
-    digits_dict = {"one":1, "two":2, "three":3, "four":4, "five":5, "six":6, "seven":7, "eight":8, "nine":9, 1:1 , 2:2 , 3:3 , 4:4, 5:5 , 6:6, 7:7, 8:8, 9:9}
-    full_sum = 0
-    for line in file:
-        datatype_list_nums = []
-        for element in digits_dict: 
-            if element in line:   
-                datatype_list_nums.append(digits_dict[element]) 
-        full_sum += get_only_first_and_last_element_sum(datatype_list_nums)
-
-    print(full_sum)
-
 def get_only_first_and_last_element_sum(datatype_list_nums): 
-    length_of_numlist = len(datatype_list_nums)
-    sum_of_nums = str(datatype_list_nums[0]) + str(datatype_list_nums[length_of_numlist-1]) 
+    sum_of_nums = str(datatype_list_nums[0]) + str(datatype_list_nums[-1]) 
     sum_of_nums = int(sum_of_nums)
     return sum_of_nums
 
-
-string = "seven331fivekfrqbd"
-summe = 0
-datatype_list_nums = []
-digits_dict = {"one":1, "two":2, "three":3, "four":4, "five":5, "six":6, "seven":7, "eight":8, "nine":9, "1":1 , "2":2 , "3":3 , "4":4, "5":5 , "6":6, "7":7, "8":8, "9":9}
-for element in digits_dict: 
-    if element in string:   
-        datatype_list_nums.append(digits_dict[element]) 
-
-print(datatype_list_nums) 
-
-# summe += get_only_first_and_last_element_sum(datatype_list_nums)
-# print(summe) 
-
-
-# if __name__ == "__main__": 
-#     main()
+def main():
+    file = open("day1/input.txt", "r")
+    full_sum = 0
+    for element in file:
+        datatype_list_nums = []
+        length_of_string = len(element) 
+        for i in range (0, length_of_string):
+            try:  
+                if element[i] == "o": 
+                    if element[i+1] == "n": 
+                        if element[i+2] == "e": 
+                            datatype_list_nums.append(1)  
+                            i += 2
+                        i += 1 
+                elif element[i] == "t": 
+                    if element[i+1] == "w": 
+                        if element[i+2] == "o": 
+                            datatype_list_nums.append(2) 
+                            i += 2
+                        i += 1 
+                    elif element[i+1] =="h": 
+                        if element[i+2] == "r": 
+                            if element[i+3] =="e": 
+                                if element[i+4] == "e": 
+                                    datatype_list_nums.append(3) 
+                                    i += 4
+                                i += 3
+                            i += 2
+                        i += 1        
+                elif element[i] == "f": 
+                    if element[i+1] == "o": 
+                        if element[i+2] == "u": 
+                            if element[i+3] == "r": 
+                                datatype_list_nums.append(4) 
+                                i += 3
+                            i += 2
+                        i += 1
+                    if element[i+1] == "i": 
+                        if element[i+2] == "v": 
+                            if element[i+3] == "e": 
+                                datatype_list_nums.append(5) 
+                                i += 3 
+                elif element[i] == "s": 
+                    if element[i+1] == "i": 
+                        if element[i+2] == "x": 
+                            datatype_list_nums.append(6) 
+                            i += 2
+                        i += 1  
+                    if element[i+1] == "e": 
+                        if element[i+2] == "v": 
+                            if element[i+3] == "e": 
+                                if element[i+4] == "n": 
+                                    datatype_list_nums.append(7) 
+                                    i += 4 
+                elif element[i] == "e": 
+                    if element[i+1] == "i": 
+                        if element[i+2] == "g": 
+                            if element[i+3] == "h": 
+                                if element[i+4] == "t": 
+                                    datatype_list_nums.append(8) 
+                                    i += 4         
+                elif element[i] == "n": 
+                    if element[i+1] == "i": 
+                        if element[i+2] == "n": 
+                            if element[i+3] == "e": 
+                                datatype_list_nums.append(9)
+                                i += 4 
+                                
+                elif element[i].isnumeric(): 
+                    datatype_list_nums.append(int(element[i]))
+            except: 
+                pass   
+        
+        full_sum += get_only_first_and_last_element_sum(datatype_list_nums)
+        
+    print(full_sum) 
+                
+if __name__ == "__main__": 
+    main()
